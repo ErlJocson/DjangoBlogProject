@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from .models import Blog
+from .models import *
 
 @login_required()
 def index_view(request):
