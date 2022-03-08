@@ -1,0 +1,43 @@
+{% extends 'layout.html'%} {% block content %}
+
+<div class="form-container">
+  <form action="" method="post" class="bg-light shadow-lg">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="">Username</label>
+      <input required type="text" class="form-control" name="username" />
+    </div>
+    <div>
+      <label for="">Email</label>
+      <input required type="email" name="email" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="">First Name</label>
+      <input required type="text" class="form-control" name="first_name" />
+    </div>
+    <div>
+      <label for="">Last name</label>
+      <input required type="text" name="last_name" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="">Password</label>
+      <input required type="password" name="password" class="form-control" />
+    </div>
+    <div class="form-group">
+      <label for="">Confirm Password</label>
+      <input
+        required
+        type="password"
+        name="confirm_password"
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <input type="submit" class="btn btn-outline-secondary" value="Register" />
+    </div>
+    <a href="{% url 'login' %}">Login</a>
+  </form>
+</div>
+
+{% endblock %}

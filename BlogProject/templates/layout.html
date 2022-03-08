@@ -23,7 +23,9 @@
     >
       {{ message }}
     </div>
-    {% endfor %} {% endif %} {% include 'navigation.html' %}
+    {% endfor %} {% endif %} {% if request.user.is_authenticated %} {% include
+    'navigation.html' %} {% endif %}
+
     <div class="container">{% block content %} {% endblock %}</div>
 
     <script

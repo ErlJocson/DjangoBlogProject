@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'post'
+    'post',
+    'authentication'
 ]
 
 MIDDLEWARE = [
@@ -128,4 +129,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# LOGIN_URL = '/auth/'
+LOGIN_URL = '/auth/login'
