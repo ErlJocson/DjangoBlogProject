@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -61,3 +62,9 @@ def logout_view(request):
         messages.warning(request, 'There was an error!')
         
     return redirect('login')
+
+@login_required
+def profile_view(request):
+    return render(request, "profile.html", {
+        'title':'Profile'
+    })
