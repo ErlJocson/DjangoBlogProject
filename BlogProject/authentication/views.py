@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
 
@@ -14,7 +14,8 @@ def login_view(request):
 
         try:
             login(request, user_to_login)
-            return redirect('index')
+            messages.success(request, f'Welcome back {username}')
+            return redirect('home')
         except:
             messages.warning(request, 'There was an error!')
 
@@ -41,6 +42,8 @@ def register_view(request):
                     password=password,
                 )
                 user.save()
+                login(request, user)
+                return redirect('home')
             except:
                 messages.warning(request, 'There was an error!')
         else:
@@ -49,3 +52,12 @@ def register_view(request):
     return render(request, 'register.html', {
         "title":"Register"
     })
+
+def logout_view(request):
+    try:
+        logout(request)
+        messages.success(request, 'Logout success')
+    except:
+        messages.warning(request, 'There was an error!')
+        
+    return redirect('login')
