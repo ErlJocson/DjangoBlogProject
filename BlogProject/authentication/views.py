@@ -5,6 +5,10 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 
 def login_view(request):
+    if request.user.is_authenticated:
+        messages.warning(request, 'You are already logged in!')
+        return redirect('home')
+
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -25,6 +29,10 @@ def login_view(request):
     })
 
 def register_view(request):
+    if request.user.is_authenticated:
+        messages.warning(request, 'You are already logged in!')
+        return redirect('home')
+
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
