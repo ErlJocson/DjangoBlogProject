@@ -29,4 +29,26 @@ def index_view(request):
 
 @login_required
 def blog_comment_view(request, blog_id):
-    return render(request, 'blog_comment.html', {})
+    blog = Blog.objects.get(id=blog_id)
+    comments = Comment.objects.all().filter(blog_id=blog_id)
+
+    if request.method == "POST":
+        
+        try:
+            content = request.POST['content']
+        except:
+            content = ''
+        
+        if content:
+            comment_to_save = Comment.objects.create(
+                content=content,
+                blog_id=blog,
+            )
+            comment_to_save.save()
+            messages.success(request, "You have commented!")
+
+    return render(request, 'blog_comment.html', {
+        "title":"Comments",
+        "blog":blog,
+        "comments":comments
+    })

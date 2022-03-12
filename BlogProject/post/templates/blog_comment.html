@@ -1,1 +1,35 @@
-{% extends 'layout.html' %} {% block content %} {% endblock %}
+{% extends 'layout.html' %} {% block content %}
+
+<div class="blogs-container">
+  <div>
+    <header>
+      <h4>{{ blog.user_id.first_name }} {{ blog.user_id.last_name}}</h4>
+      <span>{{ blog.date }}</span>
+    </header>
+    <p>{{ blog.content }}</p>
+  </div>
+</div>
+
+{% for comment in comments %}
+<div class="blogs-container" style="width: 70%">
+  <div>
+    <header>
+      <!-- <h4>{{ comment.user_id.first_name }} {{ comment.user_id.last_name}}</h4> -->
+      <span>{{ comment.date }}</span>
+    </header>
+    <p>{{ comment.content }}</p>
+  </div>
+</div>
+{% endfor %}
+
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <textarea rows="3" class="form-control" name="content" required></textarea>
+  </div>
+  <div class="form-group">
+    <input type="submit" value="COMMENT" class="btn" />
+  </div>
+</form>
+
+{% endblock %}
