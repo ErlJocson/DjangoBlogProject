@@ -73,6 +73,8 @@ def logout_view(request):
 
 @login_required
 def profile_view(request):
+    current_user = User.objects.get(id=request.user.id)
     return render(request, "profile.html", {
-        'title':'Profile'
+        'title':'Profile',
+        'current_user':current_user
     })

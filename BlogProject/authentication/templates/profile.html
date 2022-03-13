@@ -1,1 +1,12 @@
-{% extends 'layout.html' %} {% block content %} {% endblock %}
+{% extends 'layout.html' %} {% block content %}
+
+<div>
+  <h3>Details</h3>
+  <ul>
+    <li>Username: {{ current_user.username }}</li>
+    <li>First name: {{ current_user.first_name }}</li>
+    <li>Last name: {{ current_user.last_name }}</li>
+    <li>Email: {{ current_user.email }}</li>
+  </ul>
+</div>
+{% endblock %}

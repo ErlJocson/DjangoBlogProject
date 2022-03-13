@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import *
+from .models import Blog, Comment, Like
 
 @login_required
 def index_view(request):
@@ -30,7 +30,7 @@ def index_view(request):
 @login_required
 def blog_comment_view(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
-    comments = Comment.objects.all().filter(blog_id=blog_id)
+    comments = Comment.objects.filter(blog_id=blog_id)
 
     if request.method == "POST":
         
