@@ -1,1 +1,3 @@
 # DjangoBlogProject
+
+- Still being developed
