@@ -8,11 +8,12 @@
     </header>
     <p>{{ blog.content }}</p>
     <a
-      href="{% url 'like-a-post' blog_id=blog_id.id %}"
+      href="{% url 'like_post' blog_id=blog.id %}"
       style="border: 2px solid black; cursor: pointer"
       class="btn"
       >Like</a
     >
+    <span>12</span>
   </div>
 </div>
 

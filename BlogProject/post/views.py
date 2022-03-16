@@ -56,12 +56,19 @@ def blog_comment_view(request, blog_id):
 
 @login_required
 def like_post(request, blog_id):
-    
-    like = Like.objects.create(
-    is_like=True,
-    blog_id=blog_id,
-    user_id=request.user
-    )
-    like.save()
+    blog = Blog.objects.get(id=blog_id)
 
-    return redirect('index')
+    try:
+        check_if_exist = Like.objects.get(blog_id=blog_id)
+
+        if check_if_exist:
+            like = Like.objects.create(
+                is_like=True,
+                blog_id=blog,
+                user_id=request.user
+            )
+            like.save()
+    except:
+        messages.warning(request, 'Unliked')
+
+    return redirect('comments-likes', blog_id=blog_id)
