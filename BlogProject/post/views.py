@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Blog, Comment, Like
@@ -43,6 +43,7 @@ def blog_comment_view(request, blog_id):
             comment_to_save = Comment.objects.create(
                 content=content,
                 blog_id=blog,
+                user_id=request.user
             )
             comment_to_save.save()
             messages.success(request, "You have commented!")
@@ -52,3 +53,15 @@ def blog_comment_view(request, blog_id):
         "blog":blog,
         "comments":comments
     })
+
+@login_required
+def like_post(request, blog_id):
+    
+    like = Like.objects.create(
+    is_like=True,
+    blog_id=blog_id,
+    user_id=request.user
+    )
+    like.save()
+
+    return redirect('index')

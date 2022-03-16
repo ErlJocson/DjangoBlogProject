@@ -7,20 +7,26 @@
       <span>{{ blog.date }}</span>
     </header>
     <p>{{ blog.content }}</p>
+    <a
+      href="{% url 'like-a-post' blog_id=blog_id.id %}"
+      style="border: 2px solid black; cursor: pointer"
+      class="btn"
+      >Like</a
+    >
   </div>
 </div>
 
-{% for comment in comments %}
+{% if comments %} {% for comment in comments %}
 <div class="blogs-container" style="width: 70%">
   <div>
     <header>
-      <h4>Cant get name for now</h4>
+      <h4>{{ comment.user_id.first_name }}</h4>
       <span>{{ comment.date }}</span>
     </header>
     <p>{{ comment.content }}</p>
   </div>
 </div>
-{% endfor %}
+{% endfor %} {% endif %}
 
 <form method="post">
   {% csrf_token %}
