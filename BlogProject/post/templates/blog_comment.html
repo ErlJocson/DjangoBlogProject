@@ -7,13 +7,22 @@
       <span>{{ blog.date }}</span>
     </header>
     <p>{{ blog.content }}</p>
+    {% if liked %}
+    <a
+      href="{% url 'unlike_post' blog_id=blog.id %}"
+      style="border: 2px solid black; cursor: pointer"
+      class="btn"
+      >Unlike</a
+    >
+    {% else %}
     <a
       href="{% url 'like_post' blog_id=blog.id %}"
       style="border: 2px solid black; cursor: pointer"
       class="btn"
       >Like</a
     >
-    <span>12</span>
+    {% endif %}
+    <span>{{ likes }}</span>
   </div>
 </div>
 

@@ -31,6 +31,12 @@ def index_view(request):
 def blog_comment_view(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
     comments = Comment.objects.filter(blog_id=blog_id)
+    likes = Like.objects.filter(blog_id=blog_id)
+    liked = False
+
+    for i in likes:
+        if request.user == i.user_id:
+            liked = True
 
     if request.method == "POST":
         
@@ -51,24 +57,35 @@ def blog_comment_view(request, blog_id):
     return render(request, 'blog_comment.html', {
         "title":"Comments",
         "blog":blog,
-        "comments":comments
+        "comments":comments,
+        "likes":len(likes),
+        "liked":liked,
     })
 
 @login_required
 def like_post(request, blog_id):
     blog = Blog.objects.get(id=blog_id)
+    
+    check_if_liked = Like.objects.filter(blog_id=blog)
 
-    try:
-        check_if_exist = Like.objects.get(blog_id=blog_id)
+    if not check_if_liked:
+        like = Like.objects.create(
+            is_like=True,
+            blog_id=blog,
+            user_id=request.user
+        )
+        like.save()
+        messages.success(request, 'Liked')
+    return redirect('comments-likes', blog_id=blog_id)
 
-        if check_if_exist:
-            like = Like.objects.create(
-                is_like=True,
-                blog_id=blog,
-                user_id=request.user
-            )
-            like.save()
-    except:
-        messages.warning(request, 'Unliked')
+@login_required
+def unlike_post(request, blog_id):
+    blog = Blog.objects.get(id=blog_id)
+
+    check_if_liked = Like.objects.filter(blog_id=blog)
+
+    if check_if_liked:
+        check_if_liked.delete()
+        messages.success(request, 'Unliked')
 
     return redirect('comments-likes', blog_id=blog_id)
