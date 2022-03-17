@@ -7,6 +7,8 @@
       <span>{{ blog.date }}</span>
     </header>
     <p>{{ blog.content }}</p>
+    <span>{{ likes }}</span>
+
     {% if liked %}
     <a
       href="{% url 'unlike_post' blog_id=blog.id %}"
@@ -22,7 +24,6 @@
       >Like</a
     >
     {% endif %}
-    <span>{{ likes }}</span>
   </div>
 </div>
 
