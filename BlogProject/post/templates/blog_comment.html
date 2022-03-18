@@ -31,10 +31,17 @@
 <div class="blogs-container" style="width: 70%">
   <div>
     <header>
-      <h4>{{ comment.user_id.first_name }}</h4>
+      <h4>{{ comment.user_id.first_name }} {{ comment.user_id.last_name }}</h4>
       <span>{{ comment.date }}</span>
     </header>
     <p>{{ comment.content }}</p>
+    {% if request.user.id == comment.user_id.id %}
+    <a
+      href="{% url 'remove-comment' comment_id=comment.id blog_id=comment.blog_id.id%}"
+      style="background-color: rgb(255, 165, 165)"
+      >Remove comment</a
+    >
+    {% endif %}
   </div>
 </div>
 {% endfor %} {% endif %}

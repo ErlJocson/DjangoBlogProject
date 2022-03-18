@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+from post.models import Blog
 
 def login_view(request):
     if request.user.is_authenticated:
@@ -74,7 +75,9 @@ def logout_view(request):
 @login_required
 def profile_view(request):
     current_user = User.objects.get(id=request.user.id)
+    user_blog = Blog.objects.filter(user_id=request.user).order_by('-date')
     return render(request, "profile.html", {
         'title':'Profile',
+        'blogs':user_blog,
         'current_user':current_user
     })

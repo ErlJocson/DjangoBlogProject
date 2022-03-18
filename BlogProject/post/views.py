@@ -5,7 +5,7 @@ from .models import Blog, Comment, Like
 
 @login_required
 def index_view(request):
-    blogs = Blog.objects.all()
+    blogs = Blog.objects.all().order_by('-date')
 
     if request.method == "POST":
 
@@ -88,4 +88,16 @@ def unlike_post(request, blog_id):
         check_if_liked.delete()
         messages.success(request, 'Unliked')
 
+    return redirect('comments-likes', blog_id=blog_id)
+
+def delete_post(request, blog_id):
+    blog_to_delete = Blog.objects.get(id=blog_id)
+    blog_to_delete.delete()
+    messages.success(request, 'Blog deleted!')
+    return redirect('profile')
+
+def remove_comment(request, comment_id, blog_id):
+    comment_to_delete = Comment.objects.get(id=comment_id)
+    comment_to_delete.delete()
+    messages.success(request, 'Comment removed')
     return redirect('comments-likes', blog_id=blog_id)

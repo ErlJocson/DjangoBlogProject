@@ -9,4 +9,23 @@
     <li>Email: {{ current_user.email }}</li>
   </ul>
 </div>
+
+<div class="blogs-container">
+  {% for blog in blogs %}
+  <div>
+    <header>
+      <h4>{{ blog.user_id.first_name }} {{ blog.user_id.last_name}}</h4>
+      <span>{{ blog.date }}</span>
+    </header>
+    <p>{{ blog.content}}</p>
+    <a href="{% url 'comments-likes' blog_id=blog.id %}">View comments</a>
+    <a
+      href="{% url 'delete-post' blog_id=blog.id %}"
+      style="background-color: rgb(255, 165, 165)"
+      >Delete post</a
+    >
+  </div>
+  {% endfor %}
+</div>
+
 {% endblock %}
