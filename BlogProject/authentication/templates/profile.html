@@ -9,6 +9,7 @@
     <li>Email: {{ current_user.email }}</li>
   </ul>
 </div>
+<a href="{% url 'update' %}">Edit profile</a>
 
 <div class="blogs-container">
   {% for blog in blogs %}

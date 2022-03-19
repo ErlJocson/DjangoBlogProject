@@ -81,3 +81,20 @@ def profile_view(request):
         'blogs':user_blog,
         'current_user':current_user
     })
+
+@login_required
+def update_user_data(request):
+    current_user = User.objects.get(id=request.user.id)
+
+    if request.method == 'POST':
+        current_user.username = request.POST['username']
+        current_user.email = request.POST['email']
+        current_user.first_name = request.POST['first_name']
+        current_user.last_name = request.POST['last_name']
+        current_user.save()
+        return redirect('profile')
+
+    return render(request, 'update_profile.html', {
+        'title':'Update profile',
+        'current_user':current_user,
+    })

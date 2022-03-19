@@ -90,12 +90,14 @@ def unlike_post(request, blog_id):
 
     return redirect('comments-likes', blog_id=blog_id)
 
+@login_required
 def delete_post(request, blog_id):
     blog_to_delete = Blog.objects.get(id=blog_id)
     blog_to_delete.delete()
     messages.success(request, 'Blog deleted!')
     return redirect('profile')
 
+@login_required
 def remove_comment(request, comment_id, blog_id):
     comment_to_delete = Comment.objects.get(id=comment_id)
     comment_to_delete.delete()

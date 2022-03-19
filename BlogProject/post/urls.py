@@ -7,5 +7,5 @@ urlpatterns = [
     path('like/<int:blog_id>', like_post, name="like_post"),
     path('unlike/<int:blog_id>', unlike_post, name='unlike_post'),
     path('delete_blog/<int:blog_id>', delete_post, name='delete-post'),
-    path('delete-comment/<int:blog_id>/<int:comment_id>', remove_comment, name='remove-comment')
+    path('delete-comment/<int:blog_id>/<int:comment_id>', remove_comment, name='remove-comment'),
 ]
