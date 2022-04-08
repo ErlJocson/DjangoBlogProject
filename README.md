@@ -1,3 +1,0 @@
-# DjangoBlogProject
-
-- Still being developed
