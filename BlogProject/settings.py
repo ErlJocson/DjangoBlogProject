@@ -131,3 +131,5 @@ STATICFILES_DIRS = (
 )
 
 LOGIN_URL = '/auth/login'
+
+STATIC_ROOT = 'static_root'

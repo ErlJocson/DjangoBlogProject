@@ -1,0 +1,38 @@
+.blogs-container {
+  margin-top: 20px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.blogs-container div {
+  margin: 10px 0;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.blogs-container div header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid gray;
+}
+
+.blogs-container div p {
+  margin: 20px 0;
+}
+
+.blogs-container div a {
+  text-decoration: none;
+  background-color: rgb(201, 201, 201);
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 250ms;
+  color: black;
+}
+
+.blogs-container div a:hover {
+  background-color: rgb(138, 138, 138);
+  color: white;
+}

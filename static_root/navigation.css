@@ -1,0 +1,29 @@
+nav {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(17, 17, 17, 0.8);
+  text-transform: uppercase;
+}
+
+.navbar-brand {
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+}
+
+nav div {
+  margin-right: 20px;
+}
+
+nav div a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+nav div a:hover {
+  color: rgb(186, 186, 186);
+}

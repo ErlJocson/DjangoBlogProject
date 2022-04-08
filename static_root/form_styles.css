@@ -1,0 +1,32 @@
+form {
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: var(--shadow);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+
+.form-group label {
+  font-weight: bolder;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.btn {
+  width: 30%;
+  background: var(--blue-gradient-color);
+  padding: 5px;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
